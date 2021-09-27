@@ -2,7 +2,7 @@
 
 Hi Beginners ,
 
-Following Repo contains terraform script which helps to build Complete End to End Services based on project requirements. This will gives you all a basic idea , you can change the code based on your requirement
+Following Repo contains terraform script which helps to build Complete End to End Services based on project requirements. This will gives basic idea , you can change the code based on your requirement
 
  
 List Of Projects :- 
