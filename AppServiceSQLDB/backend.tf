@@ -7,5 +7,4 @@ terraform {
     container_name       = "__terraformstoragecontainer__"
     key                  = "__terraformstoragekey__"
   }
-  required_version = "~> 0.12.29"
 }
