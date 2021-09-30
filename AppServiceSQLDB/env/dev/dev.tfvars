@@ -1,3 +1,3 @@
-resource_group_name="openwebapp-rg"
+resource_group_name="openwebapp"
 environment="dev"
 location="East US"
