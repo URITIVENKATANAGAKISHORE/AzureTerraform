@@ -2,4 +2,5 @@
 # Azure Provider source and version being used
 terraform {
   backend "azurerm" {}
+  required_version = "~> 0.12.29"
 }
