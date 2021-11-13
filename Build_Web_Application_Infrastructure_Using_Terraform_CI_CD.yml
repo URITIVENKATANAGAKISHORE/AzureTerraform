@@ -11,7 +11,8 @@ pool:
 
 steps:
  
-  - task: TerraformInstaller@0
+ #ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller, 
+  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
     inputs:
       terraformVersion: '1.0.8'
       
