@@ -76,7 +76,7 @@ stages:
         command: 'plan'
         commandOptions: '-var-file="$(System.DefaultWorkingDirectory)/AppServiceSQLDB/env/dev/dev.tfvars"'
         workingDirectory: '$(System.DefaultWorkingDirectory)/AppServiceSQLDB'
-        publishPlanResults: 'dev-appservicesqldb'
+        publishPlanResults: $(devterraformplan)
         
 - stage: Applying
   displayName: Applying Terraform
@@ -110,8 +110,5 @@ stages:
         ARM_TENANT_ID: $(az_tenant)
       inputs:
         command: 'plan'
-        commandOptions: '-auto-approve -var-file="$(System.DefaultWorkingDirectory)/AppServiceSQLDB/env/dev/dev.tfvars"'
+        commandOptions: '-auto-approve'
         workingDirectory: '$(System.DefaultWorkingDirectory)/AppServiceSQLDB'
-        publishPlanResults: 'dev-appservicesqldb'
-      
-    
