@@ -15,7 +15,7 @@ stages:
 - stage: Validate
   displayName: Install and Validate Terraform 
   jobs:
-  - job: validate
+  - job: Installation and Validate
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -39,4 +39,39 @@ stages:
       displayName: Validate Config
       inputs:
         command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/AppServiceSQLDB'
+
+- stage: Plan
+  displayName: Planning
+  jobs:
+  - job: Planning
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+      displayName: Install Terraform
+      inputs:
+        terraformVersion: $(terraformVersion)
+# Init
+    - task: TerraformCLI@0
+      displayName: Initialize Terraform
+      env:
+        ARM_SAS_TOKEN: $(sas_token)
+      inputs:
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/AppServiceSQLDB'
+        commandOptions: '-backend-config=storage_account_name=$(storageaccount) -backend-config=container_name=$(container_name) -backend-config=key=$(key)'
+        backendType: 'selfConfigured'
+
+  # Plan
+    - task: TerraformCLI@0
+      displayName: Plan Terraform Deployment
+      env:
+        ARM_SAS_TOKEN: $(sas_token)
+        ARM_CLIENT_ID: $(az_client_id)
+        ARM_CLIENT_SECRET: $(az_client_secret)
+        ARM_SUBSCRIPTION_ID: $(az_subscription)
+        ARM_TENANT_ID: $(az_tenant)
+      inputs:
+        command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/AppServiceSQLDB'
