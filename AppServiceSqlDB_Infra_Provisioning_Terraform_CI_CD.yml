@@ -3,6 +3,7 @@
 variables:
 - group: AzureInfrastructureGroup
 
+# Trigger from which branche
 trigger:
   branches:
     include:
