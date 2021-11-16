@@ -24,7 +24,7 @@ stages:
       inputs:
         terraformVersion: $(terraformVersion)
 
-# Init
+  # Init
     - task: TerraformCLI@0
       displayName: Initialize Terraform
       env:
@@ -52,7 +52,7 @@ stages:
       displayName: Install Terraform
       inputs:
         terraformVersion: $(terraformVersion)
-# Init
+  # Init
     - task: TerraformCLI@0
       displayName: Initialize Terraform
       env:
@@ -74,4 +74,6 @@ stages:
         ARM_TENANT_ID: $(az_tenant)
       inputs:
         command: 'plan'
+        commandOptions: '-var-file="$(System.DefaultWorkingDirectory)/AppServiceSQLDB/env/dev/dev.tfvars"'
         workingDirectory: '$(System.DefaultWorkingDirectory)/AppServiceSQLDB'
+        publishPlanResults: 'dev-appservicesqldb'
