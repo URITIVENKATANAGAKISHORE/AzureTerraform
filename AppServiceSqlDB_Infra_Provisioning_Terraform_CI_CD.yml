@@ -15,7 +15,7 @@ stages:
 - stage: Validate
   displayName: Install and Validate Terraform 
   jobs:
-  - job: Installation and Validate
+  - job: Installation_and_Validate
     pool:
       vmImage: ubuntu-latest
     steps:
